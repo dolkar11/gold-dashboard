@@ -4,3 +4,4 @@ pandas
 pandas_ta
 yfinance
 setuptools
+numpy

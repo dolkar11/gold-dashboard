@@ -3,3 +3,4 @@ pandas
 matplotlib
 pandas_ta
 requests
+py-cpuinfo

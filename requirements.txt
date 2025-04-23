@@ -1,4 +1,1 @@
-streamlit
-pandas
-yfinance
-matplotlib
+https://gold-dashboard-owqnapjg8hmi9m2kjphxyy.streamlit.app

@@ -96,3 +96,4 @@ st.plotly_chart(fig_rsi)
 
 st.markdown("Data powered by Google Sheets | Analysis by You 🧠")
 st.write(cambodia_df.head())
+st.write(cambodia_df.columns)

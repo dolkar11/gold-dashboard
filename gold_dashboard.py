@@ -53,18 +53,3 @@ df['RSI'] = rsi(df['Gold Price'], period=14)
 st.line_chart(df['RSI'])
 
 st.caption("Built by dolkar11 ✨")
-
-# Check column names
-st.write(cambodia_df.columns)
-@st.cache_data
-def load_cambodia_data():
-    url = "https://docs.google.com/spreadsheets/d/1wnNRlSy2MwVYRApGPOCeCEdjXeVC-XmMjL7BhDiXmrw/export?format=csv&id=1wnNRlSy2MwVYRApGPOCeCEdjXeVC-XmMjL7BhDiXmrw&gid=414083665"
-    try:
-        df = pd.read_csv(url)
-        if df.empty:
-            st.warning("The Cambodian gold data is empty.")
-        return df
-    except Exception as e:
-        st.error(f"Error loading Cambodia data: {e}")
-        return pd.DataFrame()  # Return an empty DataFrame on error
-

@@ -95,12 +95,4 @@ fig_rsi.add_trace(go.Scatter(x=global_df['Date'], y=global_df['RSI'], name='RSI'
 fig_rsi.update_layout(title="Global Gold Price RSI (14-Day)", xaxis_title="Date", yaxis_title="RSI")
 st.plotly_chart(fig_rsi)
 
-@st.cache_data
-def load_cambodia_data():
-    try:
-        # Replace with a path to your local file for testing purposes
-        df = pd.read_csv('path_to_your_local_file.csv')
-        return df
-    except Exception as e:
-        st.error(f"Error loading local Cambodia data: {e}")
-        return pd.DataFrame()
+

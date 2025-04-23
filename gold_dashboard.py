@@ -53,6 +53,8 @@ df['RSI'] = rsi(df['Gold Price'], period=14)
 st.line_chart(df['RSI'])
 
 st.caption("Built by dolkar11 ✨")
+st.write(cambodia_df.head())
+st.write(cambodia_df.columns)
 # Load Global Gold Prices
 @st.cache_data
 def load_global_data():
@@ -95,5 +97,3 @@ fig_rsi.update_layout(title="Global Gold Price RSI (14-Day)", xaxis_title="Date"
 st.plotly_chart(fig_rsi)
 
 st.markdown("Data powered by Google Sheets | Analysis by You 🧠")
-st.write(cambodia_df.head())
-st.write(cambodia_df.columns)

@@ -95,5 +95,17 @@ fig_rsi = go.Figure()
 fig_rsi.add_trace(go.Scatter(x=global_df['Date'], y=global_df['RSI'], name='RSI', line=dict(color='purple')))
 fig_rsi.update_layout(title="Global Gold Price RSI (14-Day)", xaxis_title="Date", yaxis_title="RSI")
 st.plotly_chart(fig_rsi)
-
 st.markdown("Data powered by Google Sheets | Analysis by You 🧠")
+
+# Load Cambodia Gold Prices
+@st.cache_data
+def load_cambodia_data():
+    url = "https://docs.google.com/spreadsheets/d/1wnNRlSy2MwVYRApGPOCeCEdjXeVC-XmMjL7BhDiXmrw/export?format=csv&id=1wnNRlSy2MwVYRApGPOCeCEdjXeVC-XmMjL7BhDiXmrw&gid=414083665"
+    try:
+        df = pd.read_csv(url)
+        return df
+    except Exception as e:
+        st.error(f"Error loading Cambodia data: {e}")
+        return pd.DataFrame()  # Return an empty dataframe on error
+
+cambodia_df = load_cambodia_data()

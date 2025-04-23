@@ -95,3 +95,4 @@ fig_rsi.update_layout(title="Global Gold Price RSI (14-Day)", xaxis_title="Date"
 st.plotly_chart(fig_rsi)
 
 st.markdown("Data powered by Google Sheets | Analysis by You 🧠")
+st.write(cambodia_df.head())

@@ -53,3 +53,13 @@ df['RSI'] = rsi(df['Gold Price'], period=14)
 st.line_chart(df['RSI'])
 
 st.caption("Built by dolkar11 ✨")
+@st.cache_data
+def load_cambodia_data():
+    try:
+        # Replace with a path to your local file for testing purposes
+        df = pd.read_csv('path_to_your_local_file.csv')
+        return df
+    except Exception as e:
+        st.error(f"Error loading local Cambodia data: {e}")
+        return pd.DataFrame()
+

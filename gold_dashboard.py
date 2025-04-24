@@ -87,3 +87,23 @@ try:
 except Exception as e:
     st.error("⚠️ Could not load or process Cambodian gold data.")
     st.code(str(e))
+
+url = "https://docs.google.com/spreadsheets/d/e/your_sheet_id/pub?output=csv"
+df = pd.read_csv(url)
+
+url = "https://docs.google.com/spreadsheets/d/e/your_sheet_id/pub?output=csv"
+df = pd.read_csv(url)
+
+import pandas as pd
+from io import StringIO
+
+data = """
+Date,Price_KHR
+2025-04-20,9500000
+2025-04-21,9520000
+2025-04-22,9480000
+2025-04-23,9530000
+"""
+
+df = pd.read_csv(StringIO(data), parse_dates=["Date"])
+

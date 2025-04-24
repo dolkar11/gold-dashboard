@@ -107,3 +107,15 @@ Date,Price_KHR
 
 df = pd.read_csv(StringIO(data), parse_dates=["Date"])
 
+import pandas as pd
+from io import StringIO
+
+mock_data = """
+Date,Price_KHR
+2025-04-20,9500000
+2025-04-21,9520000
+2025-04-22,9480000
+2025-04-23,9530000
+"""
+
+df = pd.read_csv(StringIO(mock_data), parse_dates=["Date"])

@@ -116,3 +116,8 @@ if not data.empty:
     st.pyplot(fig)
 else:
     st.warning("No data available to plot.")
+
+sma_window = st.slider("SMA Window", min_value=5, max_value=50, value=20)
+ema_window = st.slider("EMA Window", min_value=5, max_value=50, value=20)
+data[f'SMA_{sma_window}'] = data['Close'].rolling(window=sma_window).mean()
+data[f'EMA_{ema_window}'] = data['Close'].ewm(span=ema_window, adjust=False).mean()

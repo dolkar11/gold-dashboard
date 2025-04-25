@@ -92,3 +92,27 @@ latest_price = data["Close"].iloc[-1] if not data.empty else "No data"
 
 st.subheader(f"🔴 Live Price for {symbol}")
 st.metric(label="Current Price", value=f"${latest_price:.2f}" if latest_price != "No data" else latest_price)
+
+import matplotlib.pyplot as plt
+
+# Check if data is available
+if not data.empty:
+    # --- Moving Averages ---
+    data['SMA_20'] = data['Close'].rolling(window=20).mean()
+    data['EMA_20'] = data['Close'].ewm(span=20, adjust=False).mean()
+
+    # --- Plotting ---
+    fig, ax = plt.subplots(figsize=(10, 5))
+    ax.plot(data.index, data['Close'], label='Price', color='blue')
+    ax.plot(data.index, data['SMA_20'], label='SMA 20', color='orange', linestyle='--')
+    ax.plot(data.index, data['EMA_20'], label='EMA 20', color='green', linestyle='--')
+
+    ax.set_title(f"{symbol} Price Chart with MA")
+    ax.set_xlabel("Time")
+    ax.set_ylabel("Price")
+    ax.legend()
+    ax.grid(True)
+
+    st.pyplot(fig)
+else:
+    st.warning("No data available to plot.")

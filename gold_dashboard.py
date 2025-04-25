@@ -171,6 +171,17 @@ try:
     ticker = yf.Ticker(symbol)
     data = ticker.history(period="1d", interval="1m")
 
+    if data.empty:
+        st.warning("⚠️ No data returned. Try another symbol, or check your internet.")
+    else:
+        # ✅ Continue with plotting and metrics
+        latest_price = data["Close"].iloc[-1]
+        st.metric(label="Current Price", value=f"${latest_price:.2f}")
+        ...
+except Exception as e:
+    st.error(f"❌ Error loading data: {e}")
+
+
     if not data.empty:
         # --- Live Price ---
         latest_price = data["Close"].iloc[-1]

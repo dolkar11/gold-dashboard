@@ -54,3 +54,41 @@ st.line_chart(df['RSI'])
 
 st.caption("Built by dolkar11 ✨")
 
+import streamlit as st
+import yfinance as yf
+import pandas as pd
+
+st.title("📈 Gold, Forex & Stock Tracker Dashboard")
+
+# --- Select Market Type ---
+market_type = st.selectbox("Select Market", ["Gold", "Forex", "Stocks"])
+
+# --- Symbol Choices ---
+if market_type == "Gold":
+    symbol = "XAUUSD=X"
+elif market_type == "Forex":
+    forex_symbols = {
+        "EUR/USD": "EURUSD=X",
+        "GBP/USD": "GBPUSD=X",
+        "USD/JPY": "JPY=X",
+        "AUD/USD": "AUDUSD=X"
+    }
+    selected_forex = st.selectbox("Select Forex Pair", list(forex_symbols.keys()))
+    symbol = forex_symbols[selected_forex]
+elif market_type == "Stocks":
+    stock_symbols = {
+        "Apple (AAPL)": "AAPL",
+        "Tesla (TSLA)": "TSLA",
+        "Microsoft (MSFT)": "MSFT",
+        "Nvidia (NVDA)": "NVDA"
+    }
+    selected_stock = st.selectbox("Select Stock", list(stock_symbols.keys()))
+    symbol = stock_symbols[selected_stock]
+
+# --- Get Live Price ---
+ticker = yf.Ticker(symbol)
+data = ticker.history(period="1d", interval="1m")
+latest_price = data["Close"].iloc[-1] if not data.empty else "No data"
+
+st.subheader(f"🔴 Live Price for {symbol}")
+st.metric(label="Current Price", value=f"${latest_price:.2f}" if latest_price != "No data" else latest_price)

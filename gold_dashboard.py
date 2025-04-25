@@ -54,4 +54,70 @@ st.line_chart(df['RSI'])
 
 st.caption("Built by dolkar11 ✨")
 
+import pandas as pd
+import streamlit as st
+import ta  # Make sure 'ta' is in your requirements.txt
+
+st.markdown("## 🇰🇭 Cambodian Gold Market Analysis")
+
+# Load data from Google Sheets
+@st.cache_data(ttl=3600)
+def load_cambodia_gold():
+    url = "https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/export?format=csv"
+    df = pd.read_csv(url)
+    df["Date"] = pd.to_datetime(df["Date"])
+    df = df.sort_values("Date")
+    df = df.rename(columns={"Gold Price": "Price"})
+    return df
+
+try:
+    gold_kh_df = load_cambodia_gold()
+
+    # 📊 Display the latest price table
+    st.dataframe(gold_kh_df.tail(10), use_container_width=True)
+
+    # 📈 Add Moving Average
+    gold_kh_df["MA7"] = gold_kh_df["Price"].rolling(window=7).mean()
+    st.line_chart(gold_kh_df.set_index("Date")[["Price", "MA7"]])
+
+    # 🧠 Optional: RSI
+    gold_kh_df["RSI"] = ta.momentum.RSIIndicator(close=gold_kh_df["Price"], window=14).rsi()
+    st.line_chart(gold_kh_df.set_index("Date")[["RSI"]])
+
+except Exception as e:
+    st.error("⚠️ Could not load or process Cambodian gold data.")
+    st.code(str(e))
+
+url = "https://docs.google.com/spreadsheets/d/e/your_sheet_id/pub?output=csv"
+df = pd.read_csv(url)
+
+url = "https://docs.google.com/spreadsheets/d/e/your_sheet_id/pub?output=csv"
+df = pd.read_csv(url)
+
+import pandas as pd
+from io import StringIO
+
+data = """
+Date,Price_KHR
+2025-04-20,9500000
+2025-04-21,9520000
+2025-04-22,9480000
+2025-04-23,9530000
+"""
+
+df = pd.read_csv(StringIO(data), parse_dates=["Date"])
+
+import pandas as pd
+from io import StringIO
+
+mock_data = """
+Date,Price_KHR
+2025-04-20,9500000
+2025-04-21,9520000
+2025-04-22,9480000
+2025-04-23,9530000
+"""
+
+df = pd.read_csv(StringIO(mock_data), parse_dates=["Date"])
+
 

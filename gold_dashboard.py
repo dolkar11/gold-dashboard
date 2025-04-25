@@ -126,9 +126,12 @@ import yfinance as yf
 import pandas as pd
 import matplotlib.pyplot as plt
 
+# 🟢 Page config MUST come first
 st.set_page_config(page_title="Gold, Forex & Stock Tracker", layout="wide")
+
 st.title("📈 Gold, Forex & Stock Tracker Dashboard")
 st.caption("Built by dolkar11 ✨")
+
 
 # --- Select Market Type ---
 market_type = st.selectbox("Select Market", ["Gold", "Forex", "Stocks"])

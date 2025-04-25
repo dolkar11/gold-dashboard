@@ -58,10 +58,10 @@ import yfinance as yf
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# ✅ MUST be the very first Streamlit command
+# ✅ THIS MUST BE FIRST Streamlit command
 st.set_page_config(page_title="Gold, Forex & Stock Tracker", layout="wide")
 
-# --- App Header ---
+# ✅ Everything else comes after this
 st.title("📈 Gold, Forex & Stock Tracker Dashboard")
 st.caption("Built by dolkar11 ✨")
 
